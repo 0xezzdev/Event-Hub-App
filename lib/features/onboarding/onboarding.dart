@@ -3,6 +3,7 @@ import 'package:event_hub_app/features/onboarding/Widgets/bottom_container.dart'
 import 'package:event_hub_app/features/onboarding/Widgets/build_dot.dart';
 import 'package:event_hub_app/features/onboarding/Widgets/onboarding_photos.dart';
 import 'package:event_hub_app/features/onboarding/utils/onboarding_items.dart';
+import 'package:event_hub_app/features/signIn/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class Onboarding extends StatefulWidget {
@@ -34,10 +35,14 @@ class _OnboardingState extends State<Onboarding> {
             itemBuilder: (context, index) {
               return Stack(
                 children: [
-                  OnboardingPhotos(index: index, items: Items.onboardingItems,),
+                  OnboardingPhotos(index: index, items: Items.onboardingItems),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: BottomContainer(pageCount: pageCount, index: index, items: Items.onboardingItems,),
+                    child: BottomContainer(
+                      pageCount: pageCount,
+                      index: index,
+                      items: Items.onboardingItems,
+                    ),
                   ),
                 ],
               );
@@ -54,7 +59,16 @@ class _OnboardingState extends State<Onboarding> {
                     width: 60,
                     child: pageCount != 2
                         ? TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignIn(),
+                                ),
+                                (Route<dynamic> route) =>
+                                    false, // This predicate always returns false
+                              );
+                            },
                             child: Text(
                               "Skip",
                               style: TextStyle(
@@ -85,7 +99,12 @@ class _OnboardingState extends State<Onboarding> {
                         print(pageCount);
                         setState(() {});
                       } else {
-                        
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignIn()),
+                          (Route<dynamic> route) =>
+                              false, // This predicate always returns false
+                        );
                       }
                     },
                     child: Text(
