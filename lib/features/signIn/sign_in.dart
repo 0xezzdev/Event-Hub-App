@@ -4,6 +4,7 @@ import 'package:event_hub_app/core/utils/style.dart';
 import 'package:event_hub_app/core/widgets/custom_button.dart';
 import 'package:event_hub_app/core/widgets/custom_text_field.dart';
 import 'package:event_hub_app/core/widgets/social_button.dart';
+import 'package:event_hub_app/features/signup/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_svg/svg.dart';
@@ -120,7 +121,11 @@ class _SignInState extends State<SignIn> {
               children: [
                 Text("Don’t have an account?", style: Style.black15W400),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(
+                      context,
+                    ).push(MaterialPageRoute(builder: (context) => SignUp()));
+                  },
                   child: Text("Sign up", style: Style.auth15W400),
                 ),
               ],
