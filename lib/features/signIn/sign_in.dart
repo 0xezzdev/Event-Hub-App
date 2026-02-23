@@ -4,6 +4,7 @@ import 'package:event_hub_app/core/utils/style.dart';
 import 'package:event_hub_app/core/widgets/custom_button.dart';
 import 'package:event_hub_app/core/widgets/custom_text_field.dart';
 import 'package:event_hub_app/core/widgets/social_button.dart';
+import 'package:event_hub_app/features/forgot_password/forgot_password.dart';
 import 'package:event_hub_app/features/signup/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
@@ -87,7 +88,9 @@ class _SignInState extends State<SignIn> {
                     ),
                   ],
                 ),
-                Text("Forgot Password?", style: Style.black14W400),
+                TextButton(onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ForgotPassword()));
+                }, child: Text("Forgot Password?", style: Style.black14W400),),
               ],
             ),
           ),
