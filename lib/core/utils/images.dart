@@ -11,6 +11,7 @@ class AppImage {
   //****************************Icons*************************** */
   static String mail = "assets/icons/Mail.svg";
   static String password = "assets/icons/Password.svg";
+  static String profile = "assets/icons/Profile.svg";
   static String hidden = "assets/icons/Hidden.svg";
   static String google = "assets/icons/googleicon.svg";
   static String facebook = "assets/icons/facebook.svg";
