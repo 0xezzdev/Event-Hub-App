@@ -5,6 +5,7 @@ import 'package:event_hub_app/core/widgets/custom_button.dart';
 import 'package:event_hub_app/core/widgets/custom_text_field.dart';
 import 'package:event_hub_app/core/widgets/social_button.dart';
 import 'package:event_hub_app/features/forgot_password/forgot_password.dart';
+import 'package:event_hub_app/features/home_screen/widget/zoom_drawer_wrapper.dart';
 import 'package:event_hub_app/features/signup/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
@@ -96,7 +97,9 @@ class _SignInState extends State<SignIn> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 36, left: 56, right: 56),
-            child: CustomButton(text: 'SIGN IN'),
+            child: CustomButton(text: 'SIGN IN',onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ZoomDrawerWrapper()));
+            },),
           ),
 
           Padding(

@@ -2,7 +2,7 @@ import 'package:event_hub_app/core/utils/colors.dart';
 import 'package:event_hub_app/features/onboarding/Widgets/bottom_container.dart';
 import 'package:event_hub_app/features/onboarding/Widgets/build_dot.dart';
 import 'package:event_hub_app/features/onboarding/Widgets/onboarding_photos.dart';
-import 'package:event_hub_app/features/onboarding/utils/onboarding_items.dart';
+import 'package:event_hub_app/features/onboarding/model/onboarding_items.dart';
 import 'package:event_hub_app/features/signIn/sign_in.dart';
 import 'package:flutter/material.dart';
 
@@ -96,7 +96,6 @@ class _OnboardingState extends State<Onboarding> {
                           duration: Duration(milliseconds: 200),
                           curve: Curves.bounceIn,
                         );
-                        print(pageCount);
                         setState(() {});
                       } else {
                         Navigator.pushAndRemoveUntil(
