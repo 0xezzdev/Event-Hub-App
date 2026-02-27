@@ -47,7 +47,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 40, left: 56, right: 56),
-              child: CustomButton(text: 'SEND'),
+              child: CustomButton(text: 'SEND',onPressed: () {
+                
+              },),
             ),
           ],
         ),

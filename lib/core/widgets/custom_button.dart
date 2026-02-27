@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key, required this.text,
+    super.key, required this.text, this.onPressed,
   });
 
+final void Function()? onPressed;
   final String text;
 
   @override
@@ -15,7 +16,7 @@ class CustomButton extends StatelessWidget {
       height: 58,
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.buttonColor,
           shape: RoundedRectangleBorder(
