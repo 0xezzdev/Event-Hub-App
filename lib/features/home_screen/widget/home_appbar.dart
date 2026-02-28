@@ -8,11 +8,12 @@ import 'package:flutter_svg/svg.dart';
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar({
     super.key,
-    required this.widget, this.onTapSearch,
+    required this.widget, this.onTapSearch, this.onTapNotification,
   });
 
   final Home widget;
   final void Function()? onTapSearch;
+  final void Function()? onTapNotification;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +85,7 @@ class HomeAppbar extends StatelessWidget {
                           ),
                         ),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: onTapNotification,
                           icon: SvgPicture.asset(AppImage.notification),
                         ),
                       ),
