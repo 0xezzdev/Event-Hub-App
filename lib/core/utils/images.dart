@@ -51,4 +51,7 @@ class AppImage {
   static String map = "assets/icons/map.svg";
   static String profileBar = "assets/icons/profileItem.svg";
   static String addFloating = "assets/icons/add_box - material.svg";
+
+  //*********************notification******************** */
+  static String notificationEmpty = "assets/icons/Artwork.svg";
 }
