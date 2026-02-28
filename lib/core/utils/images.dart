@@ -54,4 +54,8 @@ class AppImage {
 
   //*********************notification******************** */
   static String notificationEmpty = "assets/icons/Artwork.svg";
+
+//*********************EventScreen******************** */
+static String eventEmpty = "assets/icons/noUpcoming.svg";
+
 }
