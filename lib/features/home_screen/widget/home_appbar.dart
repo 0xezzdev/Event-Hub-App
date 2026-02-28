@@ -8,10 +8,11 @@ import 'package:flutter_svg/svg.dart';
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar({
     super.key,
-    required this.widget,
+    required this.widget, this.onTapSearch,
   });
 
   final Home widget;
+  final void Function()? onTapSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +122,7 @@ class HomeAppbar extends StatelessWidget {
                                 style: ButtonStyle(
                                   alignment: Alignment.centerLeft,
                                 ),
-                                onPressed: () {},
+                                onPressed: onTapSearch,
                                 child: Text(
                                   "Search...",
                                   style: Style.search,
@@ -165,6 +166,7 @@ class HomeAppbar extends StatelessWidget {
                       ),
                     ],
                   ),
+                
                 ),
               ],
             ),
