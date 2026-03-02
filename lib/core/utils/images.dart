@@ -41,6 +41,7 @@ class AppImage {
   //*********************event details******************** */
   static String event1 = "assets/images/event/event1.png";
   static String event2 = "assets/images/event/event2.png";
+  static String eventDetails = "assets/images/event/eventdetailes.png";
 
   //*********************Ad******************** */
   static String ad = "assets/images/logo/ad.png";
