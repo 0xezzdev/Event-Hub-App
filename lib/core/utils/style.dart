@@ -9,6 +9,12 @@ class Style {
     fontWeight: FontWeight.w400,
     fontFamily: Fonts.airbnb,
   );
+  static TextStyle white24W400 = TextStyle(
+    color: AppColors.mainWhite,
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    fontFamily: Fonts.airbnb,
+  );
 
   static TextStyle white12W400o70 = TextStyle(
     color: AppColors.mainWhite.withValues(alpha: 0.7),
@@ -79,6 +85,19 @@ class Style {
     color: AppColors.eventDetails,
     fontSize: 12,
     fontWeight: FontWeight.w500,
+    fontFamily: Fonts.airbnb,
+  );
+  static TextStyle eventDetails15W500 = TextStyle(
+    color: AppColors.eventDetails,
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    fontFamily: Fonts.airbnb,
+  );
+
+  static TextStyle eventDetails35W400 = TextStyle(
+    color: Color(0xff120D26),
+    fontSize: 35,
+    fontWeight: FontWeight.w400,
     fontFamily: Fonts.airbnb,
   );
   static TextStyle hint = TextStyle(color: AppColors.hintColor, fontSize: 14);
