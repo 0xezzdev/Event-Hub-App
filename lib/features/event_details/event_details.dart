@@ -190,7 +190,7 @@ class _EventDetailsState extends State<EventDetails> {
                       subtitle: widget.eventDate,
                     ),
                   ),
-            
+
                   Padding(
                     padding: const EdgeInsets.all(24),
                     child: Row(
@@ -215,20 +215,29 @@ class _EventDetailsState extends State<EventDetails> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 13.0, top: 30),
+                              padding: const EdgeInsets.only(
+                                left: 13.0,
+                                top: 30,
+                              ),
                               child: Text(
                                 "Ashfak Sayem",
                                 style: Style.black16W400,
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 13.0, top: 0),
-                              child: Text("Organizer", style: Style.gray13W400ar),
+                              padding: const EdgeInsets.only(
+                                left: 13.0,
+                                top: 0,
+                              ),
+                              child: Text(
+                                "Organizer",
+                                style: Style.gray13W400ar,
+                              ),
                             ),
                           ],
                         ),
                         Spacer(),
-            
+
                         Padding(
                           padding: const EdgeInsets.only(top: 30.0),
                           child: MaterialButton(
@@ -261,7 +270,7 @@ class _EventDetailsState extends State<EventDetails> {
                     padding: const EdgeInsets.only(left: 24.0, top: 10),
                     child: Text("About Event", style: Style.black19W500),
                   ),
-            
+
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 24.0,
@@ -292,7 +301,7 @@ class _EventDetailsState extends State<EventDetails> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 52.0,right: 52,bottom: 23),
+            padding: const EdgeInsets.only(left: 52.0, right: 52, bottom: 23),
             child: CustomButton(text: "Buy Ticket \$120", onPressed: () {}),
           ),
         ],
