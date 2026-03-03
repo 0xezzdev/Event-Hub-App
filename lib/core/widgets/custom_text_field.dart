@@ -10,12 +10,15 @@ class CustomTextField extends StatelessWidget {
     required this.hint,
     required this.icon,
     this.suffixIcon,
+    this.validator,
+    required this.controller,
   });
-
+  final TextEditingController controller;
   final bool obscureText;
   final String hint;
   final String icon;
   final Widget? suffixIcon;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,6 +27,8 @@ class CustomTextField extends StatelessWidget {
         width: double.infinity,
         height: 56,
         child: TextFormField(
+          controller: controller,
+          validator: validator,
           obscureText: obscureText,
           decoration: InputDecoration(
             hint: Text(hint, style: Style.hint),
@@ -40,7 +45,10 @@ class CustomTextField extends StatelessWidget {
               borderSide: BorderSide(color: AppColors.inputTextBorder),
               borderRadius: BorderRadius.all(Radius.circular(12)),
             ),
-            errorBorder: OutlineInputBorder(),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.inputTextBorder),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
           ),
         ),
       ),
