@@ -22,6 +22,12 @@ class _SignInState extends State<SignIn> {
   final _controller = ValueNotifier<bool>(false);
   bool _checked = false;
 
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  GlobalKey<FormState> formState = GlobalKey();
+
   // ...
   @override
   void initState() {
@@ -43,101 +49,137 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainWhite,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 85, left: 125, right: 98),
-            child: SvgPicture.asset(AppImage.secIcon),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 29, top: 30),
-            child: Text("Sign in", style: Style.black24W400),
-          ),
-          CustomTextField(hint: 'abc@email.com', icon: AppImage.mail),
-          CustomTextField(
-            hint: 'Your Password',
-            icon: AppImage.password,
-            suffixIcon: IconButton(
-              onPressed: () {
-                isHidden = !isHidden;
-                setState(() {});
+      body: Form(
+        key: formState,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 85, left: 125, right: 98),
+              child: SvgPicture.asset(AppImage.secIcon),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 29, top: 30),
+              child: Text("Sign in", style: Style.black24W400),
+            ),
+            CustomTextField(
+              hint: 'abc@email.com',
+              icon: AppImage.mail,
+              controller: emailController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Email is required";
+                }
               },
-              icon: isHidden
-                  ? SvgPicture.asset(AppImage.hidden)
-                  : Icon(Icons.visibility, color: AppColors.iconsColor),
             ),
-            obscureText: isHidden,
-          ),
+            CustomTextField(
+              hint: 'Your Password',
+              icon: AppImage.password,
+              suffixIcon: IconButton(
+                onPressed: () {
+                  isHidden = !isHidden;
+                  setState(() {});
+                },
+                icon: isHidden
+                    ? SvgPicture.asset(AppImage.hidden)
+                    : Icon(Icons.visibility, color: AppColors.iconsColor),
+              ),
+              obscureText: isHidden,
+              controller: passwordController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Password is required";
+                }
+              },
+            ),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 28.0, right: 30, top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    AdvancedSwitch(
-                      height: 19,
-                      width: 32.3,
-                      controller: _controller,
-                      activeColor: AppColors.buttonColor,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.7),
-                      child: Text("Remember Me", style: Style.black14W400),
-                    ),
-                  ],
-                ),
-                TextButton(onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ForgotPassword()));
-                }, child: Text("Forgot Password?", style: Style.black14W400),),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left: 28.0, right: 30, top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      AdvancedSwitch(
+                        height: 19,
+                        width: 32.3,
+                        controller: _controller,
+                        activeColor: AppColors.buttonColor,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.7),
+                        child: Text("Remember Me", style: Style.black14W400),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ForgotPassword(),
+                        ),
+                      );
+                    },
+                    child: Text("Forgot Password?", style: Style.black14W400),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 36, left: 56, right: 56),
-            child: CustomButton(text: 'SIGN IN',onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ZoomDrawerWrapper()));
-            },),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.only(top: 24.0),
-            child: Center(child: Text("OR", style: Style.gray16W500)),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0, left: 51, right: 51),
-            child: SocialButton(
-              icon: AppImage.google,
-              text: 'Login with Google',
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 17.0, left: 50, right: 50),
-            child: SocialButton(
-              icon: AppImage.facebook,
-              text: 'Login with Facebook',
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Don’t have an account?", style: Style.black15W400),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(
+            Padding(
+              padding: const EdgeInsets.only(top: 36, left: 56, right: 56),
+              child: CustomButton(
+                text: 'SIGN IN',
+                onPressed: () {
+                  if (!formState.currentState!.validate()) {
+                  } else {
+                    Navigator.push(
                       context,
-                    ).push(MaterialPageRoute(builder: (context) => SignUp()));
-                  },
-                  child: Text("Sign up", style: Style.auth15W400),
-                ),
-              ],
+                      MaterialPageRoute(
+                        builder: (context) => ZoomDrawerWrapper(),
+                      ),
+                    );
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+
+            Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Center(child: Text("OR", style: Style.gray16W500)),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, left: 51, right: 51),
+              child: SocialButton(
+                icon: AppImage.google,
+                text: 'Login with Google',
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 17.0, left: 50, right: 50),
+              child: SocialButton(
+                icon: AppImage.facebook,
+                text: 'Login with Facebook',
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don’t have an account?", style: Style.black15W400),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(
+                        context,
+                      ).push(MaterialPageRoute(builder: (context) => SignUp()));
+                    },
+                    child: Text("Sign up", style: Style.auth15W400),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -14,44 +14,55 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  TextEditingController emailController = TextEditingController();
+
+  GlobalKey<FormState> formState = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainWhite,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomAppbar(title: '', rightIcons: []),
-            Padding(
-              padding: const EdgeInsets.only(left: 29, top: 0),
-              child: Text("Resset Password", style: Style.black24W400),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 29.0, top: 12),
-              child: SizedBox(
-                width: 244,
-                height: 50,
-                child: Text(
-                  "Please enter your email address to request a password reset",
-                  style: Style.black15W400,
+        child: Form(
+          key: formState,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomAppbar(title: '', rightIcons: []),
+              Padding(
+                padding: const EdgeInsets.only(left: 29, top: 0),
+                child: Text("Resset Password", style: Style.black24W400),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 29.0, top: 12),
+                child: SizedBox(
+                  width: 244,
+                  height: 50,
+                  child: Text(
+                    "Please enter your email address to request a password reset",
+                    style: Style.black15W400,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 26.0),
-              child: CustomTextField(
-                hint: 'abc@email.com',
-                icon: AppImage.mail,
+              Padding(
+                padding: const EdgeInsets.only(top: 26.0),
+                child: CustomTextField(
+                  hint: 'abc@email.com',
+                  icon: AppImage.mail,
+                  controller: emailController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Email is required";
+                    }
+                  },
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 40, left: 56, right: 56),
-              child: CustomButton(text: 'SEND',onPressed: () {
-                
-              },),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 40, left: 56, right: 56),
+                child: CustomButton(text: 'SEND', onPressed: () {if (!formState.currentState!.validate()) {
+                  }}),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:event_hub_app/core/utils/colors.dart';
 import 'package:event_hub_app/core/utils/images.dart';
+import 'package:event_hub_app/core/utils/services/shered_pref.dart';
 import 'package:event_hub_app/features/onboarding/onboarding.dart';
+import 'package:event_hub_app/features/signIn/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -16,6 +18,11 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _fadeAnimation;
+
+  bool isFirstTime = false;
+  Future<void> checkIsFirstTime()async{
+    isFirstTime = await SharedPref.getIsFirstTime();
+  }
 
 
   @override
@@ -38,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     Timer(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => Onboarding()),
+        MaterialPageRoute(builder: (_) =>isFirstTime? Onboarding():SignIn()),
       );
     });
   }
